@@ -17,7 +17,12 @@ def music_player():
         st.audio(audio_bytes, format='audio/ogg')
 
 
+old_url = ""
 url = st.text_input("Youtube URL") # max_chars=43
+
+if url != old_url:
+    old_url = url
+    btn
 
 quality = st.select_slider('MP3 Quality (Lower is better; but higher file size)', options=range(10))
 cover = st.checkbox('Write thumbnail as album cover?')

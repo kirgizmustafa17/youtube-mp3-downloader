@@ -36,7 +36,8 @@ def my_hook(d):
         placeholder.text("Done downloading, now post-processing....")
 
     if d['status'] == 'downloading':
-        my_bar.progress(int(float(d['_percent_str'][7:-5])))
+#         my_bar.progress(int(float(d['_percent_str'][7:-5])))
+        my_bar.progress(int(float(d['_percent_str'].strip()[:-1])))
 
 
 ydl_opts = dict(format='bestaudio', progress_hooks=[my_hook], writethumbnail=write_thumbnail, postprocessors=[

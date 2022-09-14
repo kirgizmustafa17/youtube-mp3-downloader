@@ -14,7 +14,7 @@ mtime, ctime = os.stat(file).st_mtime, os.stat(file).st_ctime
 
 st.title("music.Youtube Downloader")
 
-old_url = "https://youtu.be/JcR7QUmEEGU"
+old_url = ""  # https://youtu.be/JcR7QUmEEGU
 url = st.text_input("Youtube URL")  # max_chars=43
 
 quality = st.select_slider('MP3 Quality (Lower is better; but higher file size)', options=range(10))

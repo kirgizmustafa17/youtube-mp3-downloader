@@ -2,26 +2,7 @@ import os
 import re
 import streamlit as st
 import yt_dlp
-
-# It comes from yt-dlp
-_VALID_URL = r'''(?x:
-    https?://
-        (?:\w+\.)?
-        (?:
-            youtube(?:kids)?\.com|
-            %(invidious)s
-        )/
-        (?:
-            (?P<channel_type>channel|c|user|browse)/|
-            (?P<not_channel>
-                feed/|hashtag/|
-                (?:playlist|watch)\?.*?\blist=
-            )|
-            (?!(?:%(reserved_names)s)\b)  # Direct URLs
-        )
-        (?P<id>[^/?\#&]+)
-)'''
-
+from _VALID_URL import _VALID_URL
 
 st.title("music.Youtube Downloader")
 

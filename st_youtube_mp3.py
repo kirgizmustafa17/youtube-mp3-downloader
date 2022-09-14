@@ -62,7 +62,6 @@ placeholder = st.empty()
 class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
     def run(self, info):
         placeholder.success("Yay! Finally done converting.")
-        st.markdown("""---""")
         # st.balloons()
 
         mp3_path = str(os.path.splitext(xx)[0]) + ".mp3"
@@ -79,6 +78,9 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
                 file_name=os.path.basename(mp3_path),
                 mime='audio/mpeg',
             )
+        
+        st.markdown("""---""")
+        
 
         return [], info
 

@@ -111,6 +111,7 @@ if url != old_url:  # or btn
     for f in os.listdir("."):
         if f.endswith(".mp3"):
             print(f"-----------mtime:\t{os.stat(f).st_mtime}")
+            print(f"-----------ctime:\t{os.stat(f).st_ctime}")
             if os.stat(f).st_mtime < now - 3600:
                 os.remove(os.path.join(".", f))
                 print(f"REMOVED {f}")

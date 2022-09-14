@@ -33,7 +33,7 @@ def my_hook(d):
 ydl_opts = dict(
     format='bestaudio',
 #     paths='./mp3_folder/',
-    outtmpl='./mp3_folder/%(title)s - %(id)s.%(ext)s',
+    outtmpl='%(title)s - %(id)s.%(ext)s',
     progress_hooks=[my_hook],
     writethumbnail=write_thumbnail,
     windowsfilenames=True,
@@ -107,11 +107,11 @@ def downloader():
 if url != old_url:  # or btn
     now = time.time()
 
-    for f in os.listdir("./mp3_folder/"):
+    for f in os.listdir("."):
         if f.endswith(".mp3"):
             print(f)
             if os.stat(f).st_mtime < now - 3600:
-                os.remove(os.path.join("./mp3_folder/", f))
+                os.remove(os.path.join(".", f))
                 print(f"REMOVED {f}")
 
     if re.match(_VALID_URL, url):

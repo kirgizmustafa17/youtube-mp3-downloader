@@ -114,7 +114,7 @@ if len(params) > 0:
 #     def error(self, msg):
 #         print(msg)
 
-asd = dict(format='bestaudio', outtmpl='/watch/%(title)s - %(id)s.%(ext)s')
+asd = dict(format='bestaudio', outtmpl='./watch/%(title)s - %(id)s.%(ext)s')
 
 with yt_dlp.YoutubeDL(asd) as ydl_:
     ydl_.download(['https://www.youtube.com/watch?v=CvBi2-tXu-c'])

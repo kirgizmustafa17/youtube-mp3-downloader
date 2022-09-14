@@ -62,6 +62,11 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
         return [], info
 
 
+    def downloader():
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.add_post_processor(MyCustomPP(), when='post_process')
+            ydl.download([url])
+
 # class MyLogger:
 #     def debug(self, msg):
 #         # For compatibility with youtube-dl, both debug and info are passed into debug
@@ -80,15 +85,7 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
 #     def error(self, msg):
 #         print(msg)
 
-if url != old_url:
+if url != old_url or btn:
     old_url = url
 
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.add_post_processor(MyCustomPP(), when='post_process')
-        ydl.download([url])
-
-
-if btn:
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.add_post_processor(MyCustomPP(), when='post_process')
-        ydl.download([url])
+    downloader()

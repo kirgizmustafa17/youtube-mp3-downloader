@@ -51,7 +51,8 @@ def my_hook(d):
 ydl_opts = dict(format='bestaudio', progress_hooks=[my_hook], writethumbnail=write_thumbnail, postprocessors=[
     {'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': quality},
     {'key': 'FFmpegMetadata', 'add_metadata': add_metadata},
-    {'key': 'EmbedThumbnail'}
+    {'key': 'EmbedThumbnail'},
+    {'outtmpl': '%(title)s - %(id)s.%(ext)s'}
 ])
 
 

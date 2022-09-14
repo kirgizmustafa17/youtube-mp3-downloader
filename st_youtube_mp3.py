@@ -106,13 +106,9 @@ def downloader():
 
 if url != old_url:  # or btn
     now = time.time()
-    print(f"-----------now:\t{now}")
-
     for f in os.listdir("."):
         if f.endswith(".mp3"):
-            print(f"-----------mtime:\t{os.stat(f).st_mtime}")
-            print(f"-----------ctime:\t{os.stat(f).st_ctime}")
-            if os.stat(f).st_mtime < now - 3600:
+            if os.stat(f).st_ctime < now - 3600:
                 os.remove(os.path.join(".", f))
                 print(f"REMOVED {f}")
 

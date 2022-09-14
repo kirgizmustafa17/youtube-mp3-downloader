@@ -41,7 +41,7 @@ def my_hook(d):
     xx = os.path.abspath(d['filename'])
 
     if d['status'] == 'finished':
-        placeholder.text("Done downloading, now post-processing....")
+        placeholder.info("Done downloading, now post-processing....")
 
     if d['status'] == 'downloading':
         my_bar.progress(int(float(d['_percent_str'].split('%')[0])))
@@ -61,11 +61,12 @@ placeholder = st.empty()
 
 class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
     def run(self, info):
-        placeholder.text("Yay! Finally done converting.")
+        placeholder.success("Yay! Finally done converting.")
         # st.balloons()
 
         mp3_path = str(os.path.splitext(xx)[0]) + ".mp3"
 
+        st.info(os.path.basename(mp3_path))
         audio_file = open(mp3_path, 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='audio/mpeg')
@@ -82,9 +83,12 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
 
 
 def downloader():
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.add_post_processor(MyCustomPP(), when='post_process')
-        ydl.download([url])
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.add_post_processor(MyCustomPP(), when='post_process')
+            ydl.download([url])
+    except yt_dlp.utils.DownloadError:
+        st.error("DownloadError")
 
 # class MyLogger:
 #     def debug(self, msg):

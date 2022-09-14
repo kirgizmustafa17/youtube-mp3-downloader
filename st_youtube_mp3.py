@@ -6,11 +6,17 @@ from _VALID_URL import _VALID_URL
 import time
 
 st.title(st.experimental_get_query_params())
+params = st.experimental_get_query_params()
+
+if len(params) > 0:
+    url = st.text_input("Youtube URL", placeholder=params['v'][0])  # max_chars=43
+else:
+    url = st.text_input("Youtube URL")  # max_chars=43
 
 st.title("music.Youtube Downloader")
 
 old_url = ""  # https://www.youtube.com/watch?v=jNQXAC9IVRw
-url = st.text_input("Youtube URL")  # max_chars=43
+# url = st.text_input("Youtube URL")  # max_chars=43
 
 quality = st.select_slider('MP3 Quality (Lower is better; but higher file size)', options=range(10))
 cover = st.checkbox('Write thumbnail as album cover?')

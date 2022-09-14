@@ -54,7 +54,7 @@ ydl_opts = dict(format='bestaudio', progress_hooks=[my_hook], writethumbnail=wri
 ])
 
 
-btn = st.button("Start downloading.")
+# btn = st.button("Start downloading.")
 
 placeholder = st.empty()
 
@@ -109,7 +109,7 @@ def downloader():
 #     def error(self, msg):
 #         print(msg)
 
-if url != old_url or btn:
+if url != old_url:  # or btn
     if re.match(_VALID_URL, url):
         old_url = url
         downloader()

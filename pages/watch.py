@@ -16,6 +16,16 @@ ydl_opts = dict(
         {'key': 'EmbedThumbnail'}
     ])
 
+def my_hook(d):
+    global xx
+    xx = os.path.abspath(d['filename'])
+
+    if d['status'] == 'finished':
+        placeholder.info("Done downloading, now post-processing....")
+
+    if d['status'] == 'downloading':
+        my_bar.progress(int(float(d['_percent_str'].split('%')[0])))
+
 
 class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
     def run(self, info):

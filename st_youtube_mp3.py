@@ -4,13 +4,8 @@ import streamlit as st
 import yt_dlp
 from _VALID_URL import _VALID_URL
 
-import os
 # files = [f for f in os.listdir('.') if os.path.isfile(f)]
 # print(files)
-
-file = r"Bayern Münih - Real Madrid ｜ 2003-04 Şampiyonlar Ligi 2. Tur Eşleşmesi ｜ KLASİKLER 99. BÖLÜM - JcR7QUmEEGU.mp3"
-mtime, ctime = os.stat(file).st_mtime, os.stat(file).st_ctime
-
 
 st.title("music.Youtube Downloader")
 
@@ -77,9 +72,9 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
                 file_name=os.path.basename(mp3_path),
                 mime='audio/mpeg',
             )
-        
+
         st.markdown("""---""")
-        
+
 
         return [], info
 
@@ -111,8 +106,15 @@ def downloader():
 #         print(msg)
 
 if url != old_url:  # or btn
-    print(f"------------------mtime\t {mtime} \n ------------------ctime\t{ctime}")
-    
+    path = "."
+    now = time.time()
+
+    for f in os.listdir(path):
+        print(f)
+        if os.stat(f).st_mtime < now - 3600:
+            os.remove(os.path.join(".", f))
+            print(f"REMOVED {f}")
+
     if re.match(_VALID_URL, url):
         old_url = url
-#         downloader()
+        downloader()

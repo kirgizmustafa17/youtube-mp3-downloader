@@ -5,7 +5,7 @@ import yt_dlp
 from _VALID_URL import _VALID_URL
 import time
 
-print(f"**********\n**********\**********\n{st.experimental_get_query_params()}\n**********\n**********\n**********")
+st.title(st.experimental_get_query_params())
 
 st.title("music.Youtube Downloader")
 

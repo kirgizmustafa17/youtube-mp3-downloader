@@ -109,7 +109,7 @@ def downloader():
 if url != old_url:  # or btn
     now = time.time()
 
-    for f in os.listdir(path):
+    for f in os.listdir("."):
         print(f)
         if os.stat(f).st_mtime < now - 3600:
             os.remove(os.path.join(".", f))

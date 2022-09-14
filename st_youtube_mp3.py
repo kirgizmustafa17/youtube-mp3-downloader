@@ -48,11 +48,16 @@ def my_hook(d):
         my_bar.progress(int(float(d['_percent_str'].split('%')[0])))
 
 
-ydl_opts = dict(format='bestaudio', 'outtmpl'= '%(title)s - %(id)s.%(ext)s', progress_hooks=[my_hook], writethumbnail=write_thumbnail, postprocessors=[
-    {'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': quality},
-    {'key': 'FFmpegMetadata', 'add_metadata': add_metadata},
-    {'key': 'EmbedThumbnail'}
-])
+ydl_opts = dict(
+    format='bestaudio',
+    outtmpl= '%(title)s - %(id)s.%(ext)s',
+    progress_hooks=[my_hook],
+    writethumbnail=write_thumbnail,
+    postprocessors=[
+        {'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': quality},
+        {'key': 'FFmpegMetadata', 'add_metadata': add_metadata},
+        {'key': 'EmbedThumbnail'}
+    ])
 
 
 # No need that button, script will track entry box changes (url).

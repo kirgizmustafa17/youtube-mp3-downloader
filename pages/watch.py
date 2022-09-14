@@ -1,5 +1,5 @@
 import streamlit as st
-from .. st_youtube_mp3 import ydl_opts
+from ..st_youtube_mp3 import ydl_opts
 
 ydl_opts = ydl_opts
 

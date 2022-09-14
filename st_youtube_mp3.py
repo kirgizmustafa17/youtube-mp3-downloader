@@ -17,7 +17,7 @@ def music_player():
         st.audio(audio_bytes, format='audio/ogg')
 
 
-url = st.text_input("Youtube URL", max_chars=43)
+url = st.text_input("Youtube URL") # max_chars=43
 
 quality = st.select_slider('MP3 Quality (Lower is better; but higher file size)', options=range(10))
 cover = st.checkbox('Write thumbnail as album cover?')
@@ -36,9 +36,7 @@ def my_hook(d):
         placeholder.text("Done downloading, now post-processing....")
 
     if d['status'] == 'downloading':
-#         my_bar.progress(int(float(d['_percent_str'][7:-5])))
-#         my_bar.progress(int(float(d['_percent_str'].strip()[:-1])))
-        my_bar.progress(int(float(d['_percent_str'].split('%')[0])))
+        my_bar.progress(int(d['_percent_str'].split('%')[0]))
 
 
 ydl_opts = dict(format='bestaudio', progress_hooks=[my_hook], writethumbnail=write_thumbnail, postprocessors=[

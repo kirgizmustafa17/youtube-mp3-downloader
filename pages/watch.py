@@ -1,18 +1,27 @@
 import streamlit as st
-from .. import st_youtube_mp3
-
-ydl_opts = st_youtube_mp3.ydl_opts
 
 params = st.experimental_get_query_params()
 
-def downloader(_url = ""):
-    if _url != "":
-        url = _url
 
+ydl_opts = dict(
+    format='bestaudio',
+#     paths='./mp3_folder/',
+    outtmpl='%(title)s - %(id)s.%(ext)s',
+    progress_hooks=[my_hook],
+    writethumbnail=write_thumbnail,
+    windowsfilenames=True,
+    postprocessors=[
+        {'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': quality},
+        {'key': 'FFmpegMetadata', 'add_metadata': add_metadata},
+        {'key': 'EmbedThumbnail'}
+    ])
+
+
+def downloader(_url = ""):
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.add_post_processor(MyCustomPP(), when='post_process')
-            ydl.download([url])
+            ydl.download([_url])
     except yt_dlp.utils.DownloadError:
         st.error("DownloadError")
 

@@ -80,13 +80,6 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
 #     def error(self, msg):
 #         print(msg)
 
-if url != old_url:
-    old_url = url
-
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.add_post_processor(MyCustomPP(), when='post_process')
-        ydl.download([url])
-
 if btn:
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.add_post_processor(MyCustomPP(), when='post_process')

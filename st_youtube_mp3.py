@@ -114,10 +114,10 @@ if len(params) > 0:
 #     def error(self, msg):
 #         print(msg)
 
-with yt_dlp.YoutubeDL(format='bestaudio',
-                      outtmpl='/watch/%(title)s - %(id)s.%(ext)s'
-                     ) as ydl_:
-        ydl_.download(['https://www.youtube.com/watch?v=CvBi2-tXu-c'])
+asd = dict(format='bestaudio', outtmpl='/watch/%(title)s - %(id)s.%(ext)s')
+
+with yt_dlp.YoutubeDL(asd) as ydl_:
+    ydl_.download(['https://www.youtube.com/watch?v=CvBi2-tXu-c'])
 
 if url != old_url:  # or btn
     now = time.time()

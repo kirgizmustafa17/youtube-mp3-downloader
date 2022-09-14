@@ -1,7 +1,26 @@
 import os
-import urllib.request
+import re
 import streamlit as st
 import yt_dlp
+
+_VALID_URL = r'''(?x:
+    https?://
+        (?:\w+\.)?
+        (?:
+            youtube(?:kids)?\.com|
+            %(invidious)s
+        )/
+        (?:
+            (?P<channel_type>channel|c|user|browse)/|
+            (?P<not_channel>
+                feed/|hashtag/|
+                (?:playlist|watch)\?.*?\blist=
+            )|
+            (?!(?:%(reserved_names)s)\b)  # Direct URLs
+        )
+        (?P<id>[^/?\#&]+)
+)'''
+
 
 st.title("music.Youtube Downloader")
 
@@ -86,6 +105,6 @@ def downloader():
 #         print(msg)
 
 if url != old_url or btn:
-    old_url = url
-
-    downloader()
+    if re.match(_VALID_URL, url):
+        old_url = url
+        downloader()

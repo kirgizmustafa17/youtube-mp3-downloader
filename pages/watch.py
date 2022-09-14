@@ -6,6 +6,7 @@ import os
 params = st.experimental_get_query_params()
 
 my_bar = st.progress(0)
+placeholder = st.empty()
 
 def my_hook(d):
     global xx

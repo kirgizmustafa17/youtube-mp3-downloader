@@ -5,13 +5,11 @@ import yt_dlp
 from _VALID_URL import _VALID_URL
 import time
 
-st.title(st.experimental_get_query_params())
+# st.title(st.experimental_get_query_params())
 params = st.experimental_get_query_params()
 
 if len(params) > 0:
-    url = st.text_input("Youtube URL", placeholder=params['v'][0])  # max_chars=43
-else:
-    url = st.text_input("Youtube URL")  # max_chars=43
+    downloader(params['v'][0])
 
 st.title("music.Youtube Downloader")
 
@@ -86,7 +84,10 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
         return [], info
 
 
-def downloader():
+def downloader(_url = ""):
+    if _url != "":
+        url = _url
+
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.add_post_processor(MyCustomPP(), when='post_process')

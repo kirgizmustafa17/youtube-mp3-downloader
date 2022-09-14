@@ -1,7 +1,7 @@
 import streamlit as st
-from ..st_youtube_mp3 import ydl_opts
+from .. import st_youtube_mp3
 
-ydl_opts = ydl_opts
+ydl_opts = st_youtube_mp3.ydl_opts
 
 params = st.experimental_get_query_params()
 

@@ -62,10 +62,10 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
         return [], info
 
 
-    def downloader():
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            ydl.add_post_processor(MyCustomPP(), when='post_process')
-            ydl.download([url])
+def downloader():
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.add_post_processor(MyCustomPP(), when='post_process')
+        ydl.download([url])
 
 # class MyLogger:
 #     def debug(self, msg):

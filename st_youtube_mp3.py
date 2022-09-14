@@ -5,12 +5,6 @@ import yt_dlp
 from _VALID_URL import _VALID_URL
 import time
 
-if not os.path.exists("/mp3_folder/"):
-    os.makedirs("/mp3_folder/")
-
-# files = [f for f in os.listdir('.') if os.path.isfile(f)]
-# print(files)
-
 st.title("music.Youtube Downloader")
 
 old_url = ""  # https://youtu.be/JcR7QUmEEGU
@@ -113,11 +107,12 @@ def downloader():
 if url != old_url:  # or btn
     now = time.time()
 
-    for f in os.listdir("./mp3_folder/"):
-        print(f)
-        if os.stat(f).st_mtime < now - 3600:
-            os.remove(os.path.join("./mp3_folder/", f))
-            print(f"REMOVED {f}")
+    for f in os.listdir("."):
+        if f.endswith(".mp3"):
+            print(f)
+            if os.stat(f).st_mtime < now - 3600:
+                os.remove(os.path.join(".", f))
+                print(f"REMOVED {f}")
 
     if re.match(_VALID_URL, url):
         old_url = url

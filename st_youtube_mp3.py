@@ -53,6 +53,7 @@ ydl_opts = dict(
     outtmpl= '%(title)s - %(id)s.%(ext)s',
     progress_hooks=[my_hook],
     writethumbnail=write_thumbnail,
+    windowsfilenames=True
     postprocessors=[
         {'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': quality},
         {'key': 'FFmpegMetadata', 'add_metadata': add_metadata},

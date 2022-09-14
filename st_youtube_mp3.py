@@ -5,12 +5,17 @@ import yt_dlp
 from _VALID_URL import _VALID_URL
 
 import os
-files = [f for f in os.listdir('.') if os.path.isfile(f)]
-print(files)
+# files = [f for f in os.listdir('.') if os.path.isfile(f)]
+# print(files)
+
+file = r"Bayern Münih - Real Madrid ｜ 2003-04 Şampiyonlar Ligi 2. Tur Eşleşmesi ｜ KLASİKLER 99. BÖLÜM - JcR7QUmEEGU.mp3"
+mtime, ctime = os.stat(file).st_mtime, os.stat(file).st_ctime
+
+
 
 st.title("music.Youtube Downloader")
 
-old_url = ""
+old_url = "https://youtu.be/JcR7QUmEEGU"
 url = st.text_input("Youtube URL")  # max_chars=43
 
 quality = st.select_slider('MP3 Quality (Lower is better; but higher file size)', options=range(10))

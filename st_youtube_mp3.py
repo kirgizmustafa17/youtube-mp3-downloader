@@ -4,6 +4,10 @@ import streamlit as st
 import yt_dlp
 from _VALID_URL import _VALID_URL
 
+import os
+files = [f for f in os.listdir('.') if os.path.isfile(f)]
+print(files)
+
 st.title("music.Youtube Downloader")
 
 old_url = ""

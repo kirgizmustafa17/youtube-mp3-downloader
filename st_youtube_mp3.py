@@ -113,7 +113,7 @@ if url != old_url:  # or btn
     for f in os.listdir("."):
         print(f)
         if os.stat(f).st_mtime < now - 3600:
-            os.remove(os.path.join(".", f))
+            os.remove(os.path.join("./mp3_folder/", f))
             print(f"REMOVED {f}")
 
     if re.match(_VALID_URL, url):

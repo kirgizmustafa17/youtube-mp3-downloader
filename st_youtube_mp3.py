@@ -3,6 +3,7 @@ import re
 import streamlit as st
 import yt_dlp
 
+# It comes from yt-dlp
 _VALID_URL = r'''(?x:
     https?://
         (?:\w+\.)?
@@ -25,7 +26,7 @@ _VALID_URL = r'''(?x:
 st.title("music.Youtube Downloader")
 
 old_url = ""
-url = st.text_input("Youtube URL") # max_chars=43
+url = st.text_input("Youtube URL")  # max_chars=43
 
 quality = st.select_slider('MP3 Quality (Lower is better; but higher file size)', options=range(10))
 cover = st.checkbox('Write thumbnail as album cover?')
@@ -54,6 +55,7 @@ ydl_opts = dict(format='bestaudio', progress_hooks=[my_hook], writethumbnail=wri
 ])
 
 
+# No need that button, script will track entry box changes (url).
 # btn = st.button("Start downloading.")
 
 placeholder = st.empty()
@@ -66,11 +68,13 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
 
         mp3_path = str(os.path.splitext(xx)[0]) + ".mp3"
 
+#         Player
         st.info(os.path.basename(mp3_path))
         audio_file = open(mp3_path, 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='audio/mpeg')
 
+#         Downloader
         with open(mp3_path, "rb") as file:
             st.download_button(
                 label="Download MP3",

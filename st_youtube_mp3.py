@@ -10,7 +10,7 @@ import os
 
 file = r"Bayern Münih - Real Madrid ｜ 2003-04 Şampiyonlar Ligi 2. Tur Eşleşmesi ｜ KLASİKLER 99. BÖLÜM - JcR7QUmEEGU.mp3"
 mtime, ctime = os.stat(file).st_mtime, os.stat(file).st_ctime
-
+print(f"mtime\t {mtime} \n ctime\t{ctime}")
 
 
 st.title("music.Youtube Downloader")

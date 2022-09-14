@@ -2,19 +2,7 @@ import streamlit as st
 
 params = st.experimental_get_query_params()
 
-
-ydl_opts = dict(
-    format='bestaudio',
-#     paths='./mp3_folder/',
-    outtmpl='%(title)s - %(id)s.%(ext)s',
-    progress_hooks=[my_hook],
-    writethumbnail=write_thumbnail,
-    windowsfilenames=True,
-    postprocessors=[
-        {'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': quality},
-        {'key': 'FFmpegMetadata', 'add_metadata': add_metadata},
-        {'key': 'EmbedThumbnail'}
-    ])
+my_bar = st.progress(0)
 
 def my_hook(d):
     global xx
@@ -25,6 +13,19 @@ def my_hook(d):
 
     if d['status'] == 'downloading':
         my_bar.progress(int(float(d['_percent_str'].split('%')[0])))
+
+
+ydl_opts = dict(
+    format='bestaudio',
+    outtmpl='%(title)s - %(id)s.%(ext)s',
+    progress_hooks=[my_hook],
+    writethumbnail=True,
+    windowsfilenames=True,
+    postprocessors=[
+        {'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3', 'preferredquality': 0},
+        {'key': 'FFmpegMetadata', 'add_metadata': True},
+        {'key': 'EmbedThumbnail'}
+    ])
 
 
 class MyCustomPP(yt_dlp.postprocessor.PostProcessor):

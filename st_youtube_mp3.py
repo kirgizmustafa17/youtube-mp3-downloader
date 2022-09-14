@@ -35,8 +35,8 @@ def my_hook(d):
 
 ydl_opts = dict(
     format='bestaudio',
-    paths='./mp3_folder/',
-    outtmpl='%(title)s - %(id)s.%(ext)s',
+#     paths='./mp3_folder/',
+    outtmpl='./mp3_folder/%(title)s - %(id)s.%(ext)s',
     progress_hooks=[my_hook],
     writethumbnail=write_thumbnail,
     windowsfilenames=True,

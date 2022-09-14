@@ -5,6 +5,9 @@ import yt_dlp
 from _VALID_URL import _VALID_URL
 import time
 
+if not os.path.exists("/mp3_folder/"):
+    os.makedirs("/mp3_folder/")
+
 # files = [f for f in os.listdir('.') if os.path.isfile(f)]
 # print(files)
 

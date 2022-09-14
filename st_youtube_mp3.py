@@ -3,6 +3,7 @@ import re
 import streamlit as st
 import yt_dlp
 from _VALID_URL import _VALID_URL
+import time
 
 # files = [f for f in os.listdir('.') if os.path.isfile(f)]
 # print(files)
@@ -106,7 +107,6 @@ def downloader():
 #         print(msg)
 
 if url != old_url:  # or btn
-    path = "."
     now = time.time()
 
     for f in os.listdir(path):

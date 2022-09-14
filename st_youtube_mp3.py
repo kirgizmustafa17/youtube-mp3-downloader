@@ -8,9 +8,6 @@ import time
 # st.title(st.experimental_get_query_params())
 params = st.experimental_get_query_params()
 
-if len(params) > 0:
-    downloader(params['v'][0])
-
 st.title("music.Youtube Downloader")
 
 old_url = ""  # https://www.youtube.com/watch?v=jNQXAC9IVRw
@@ -95,6 +92,10 @@ def downloader(_url = ""):
     except yt_dlp.utils.DownloadError:
         st.error("DownloadError")
 
+
+if len(params) > 0:
+    downloader(params['v'][0])
+        
 # class MyLogger:
 #     def debug(self, msg):
 #         # For compatibility with youtube-dl, both debug and info are passed into debug

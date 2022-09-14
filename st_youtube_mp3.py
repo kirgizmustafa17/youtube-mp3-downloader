@@ -5,9 +5,10 @@ import yt_dlp
 from _VALID_URL import _VALID_URL
 import time
 
+
 st.title("music.Youtube Downloader")
 
-old_url = ""  # https://youtu.be/JcR7QUmEEGU
+old_url = ""  # https://www.youtube.com/watch?v=jNQXAC9IVRw
 url = st.text_input("Youtube URL")  # max_chars=43
 
 quality = st.select_slider('MP3 Quality (Lower is better; but higher file size)', options=range(10))

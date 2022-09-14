@@ -5,24 +5,8 @@ import yt_dlp
 
 st.title("music.Youtube Downloader")
 
-
-def music_player():
-    with yt_dlp.YoutubeDL({'format': 'bestaudio'}) as ydla:
-        info_dict = ydla.extract_info(url, download=False)
-        audio_url = info_dict.get("url", None)
-
-        audio_file = urllib.request.urlopen(audio_url)
-        audio_bytes = audio_file.read()
-
-        st.audio(audio_bytes, format='audio/ogg')
-
-
 old_url = ""
 url = st.text_input("Youtube URL") # max_chars=43
-
-if url != old_url:
-    old_url = url
-    btn
 
 quality = st.select_slider('MP3 Quality (Lower is better; but higher file size)', options=range(10))
 cover = st.checkbox('Write thumbnail as album cover?')
@@ -96,6 +80,9 @@ class MyCustomPP(yt_dlp.postprocessor.PostProcessor):
 #     def error(self, msg):
 #         print(msg)
 
+if url != old_url:
+    old_url = url
+    btn
 
 if btn:
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
